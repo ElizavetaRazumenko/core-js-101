@@ -22,6 +22,7 @@
  */
 function findElement(/* arr, value */) {
   throw new Error('Not implemented');
+  // return arr.indexOf(value);
 }
 
 /**
