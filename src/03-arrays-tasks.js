@@ -246,9 +246,14 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
-  // return arr.map((item, index) => (index === 0 ? item[index] : item[index - 1] + item[index]));
+function getMovingSum(arr) {
+  // throw new Error('Not implemented');
+  const newArray = [];
+  arr.reduce((accum, item, index) => {
+    newArray[index] = accum + item;
+    return accum + item;
+  }, 0);
+  return newArray;
 }
 
 /**
@@ -282,8 +287,12 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  // throw new Error('Not implemented');
+  return arr.reduce((accum, item, indx) => {
+    const newArr = new Array(indx + 1).fill(item);
+    return [...accum, ...newArr];
+  }, []);
 }
 
 
@@ -454,15 +463,15 @@ function sortCitiesArray(arr) {
   // throw new Error('Not implemented');
   return arr.sort((first, sec) => {
     if (first.country < sec.country) {
-      return -1;
+      return -100;
     }
     if (first.country === sec.country) {
       if (first.city < sec.city) {
-        return -1;
+        return -100;
       }
-      return 1;
+      return 100;
     }
-    return 1;
+    return 100;
   });
 }
 
@@ -484,8 +493,10 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  // throw new Error('Not implemented');
+  const newArr = new Array(n).fill(new Array(n).fill(0));
+  return newArr.map((elem, index) => elem.map((_, ind) => (index === ind ? 1 : 0)));
 }
 
 /**
@@ -611,8 +622,18 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
+function swapHeadAndTail(/*arr*/) {
   throw new Error('Not implemented');
+  // let leftArr = [];
+  // let rightArr = [];
+  // if (arr.length % 2 === 0) {
+  //   leftArr = arr.filter((_, index) => index < arr.length / 2);
+  //   rightArr = arr.filter((_, index) => index >= arr.length / 2);
+  //   return [...leftArr, ...rightArr];
+  // }
+  // leftArr = arr.filter((_, index) => index < Math.floor(arr.length / 2));
+  // rightArr = arr.filter((_, index) => index > Math.floor(arr.length / 2));
+  // return [...leftArr, arr[Math.floor(arr.length / 2)], ...rightArr];
 }
 
 
