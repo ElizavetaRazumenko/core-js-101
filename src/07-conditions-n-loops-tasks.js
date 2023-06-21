@@ -249,8 +249,9 @@ function reverseString(str) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  // throw new Error('Not implemented');
+  return Number(`${num}`.split('').reverse().join(''));
 }
 
 
@@ -292,8 +293,11 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  // throw new Error('Not implemented');
+  const number = `${num}`.split('').reduce((accum, item) => accum + +item, 0);
+  if (number < 10) return number;
+  return getDigitalRoot(number);
 }
 
 
@@ -318,8 +322,22 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  // throw new Error('Not implemented');
+  const leftBrackets = ['', '[', '(', '{', '<'];
+  const rightBrackets = ['', ']', ')', '}', '>'];
+  const stack = [];
+  // if (str[0] in bracketObj) return false;
+  for (let i = 0; i < str.length; i += 1) {
+    if (leftBrackets.includes(str[i])) {
+      stack.push(str[i]);
+    } else if (stack[stack.length - 1] === leftBrackets[rightBrackets.indexOf(str[i])]) {
+      stack.pop();
+    } else {
+      return false;
+    }
+  }
+  return stack.length === 0;
 }
 
 
@@ -343,8 +361,9 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  // throw new Error('Not implemented');
+  return num.toString(n);
 }
 
 
