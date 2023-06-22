@@ -379,8 +379,16 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  // throw new Error('Not implemented');
+  let result = '';
+  for (let i = 0; i < pathes[0].length; i += 1) {
+    if (pathes.every((item) => item[i] === pathes[0][i])) {
+      result += pathes[0][i];
+    } else break;
+  }
+  const lastIndOf = result.lastIndexOf('/') + 1;
+  return result.slice(0, lastIndOf);
 }
 
 
@@ -402,8 +410,20 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  // throw new Error('Not implemented');
+  const result = [];
+  for (let i = 0; i < m1.length; i += 1) {
+    result[i] = [];
+    for (let j = 0; j < m2[0].length; j += 1) {
+      let ceil = 0;
+      for (let n = 0; n < m1[0].length; n += 1) {
+        ceil += m1[i][n] * m2[n][j];
+      }
+      result[i][j] = ceil;
+    }
+  }
+  return result;
 }
 
 
@@ -437,8 +457,23 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  // throw new Error('Not implemented');
+  for (let i = 0; i < position.length; i += 1) {
+    if (position.every((item) => item[0] === position[i][0])) return position[i][0];
+    if (position.every((item) => item[1] === position[i][1])) return position[i][1];
+    if (position.every((item) => item[2] === position[i][2])) return position[i][2];
+    const arr = [];
+    for (let j = 0; j < position[i].length; j += 1) {
+      if (position[i][0] === position[i][j]) {
+        arr.push(position[i][j]);
+      }
+      if (arr.length === position[i].length) return arr[0];
+    }
+  }
+  if (position[0][0] === position[1][1] && position[2][2] === position[1][1]) return position[0][0];
+  if (position[0][2] === position[1][1] && position[2][0] === position[1][1]) return position[0][2];
+  return undefined;
 }
 
 
