@@ -275,8 +275,21 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  // throw new Error('Not implemented');
+  let start;
+  if ((ccn.toString().length - 1) % 2 === 0) {
+    start = 1;
+  } else start = 0;
+  let result = 0;
+  for (let i = 0; i < ccn.toString().length; i += 1) {
+    if ((start + i) % 2 === 0) {
+      const num = ccn.toString()[i] * 2;
+      result += num < 10 ? num : num - 9;
+    } else result += +ccn.toString()[i];
+  }
+  const bool = result % 10 === 0;
+  return bool;
 }
 
 /**
@@ -457,8 +470,55 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  // throw new Error('Not implemented');
+  if (position[0][0] === position[0][1] && position[0][0] === position[0][2]) {
+    if (position[0][0]) return position[0][0];
+  }
+  // if (position[0][0] === position[1][1] === position[2][2]) {
+  //   if (position[0][0]) return position[0][0];
+  // }
+  if (position[0][0] === position[1][1] && position[0][0] === position[2][2]) {
+    if (position[0][0]) return position[0][0];
+  }
+  // if (position[0][2] === position[1][1] === position[2][0]) {
+  //   if (position[0][2]) return position[0][2];
+  // }
+  if (position[1][0] === position[1][1] && position[1][0] === position[1][2]) {
+    if (position[1][0]) return position[1][0];
+  }
+
+  if (position[2][0] === position[2][1] && position[2][0] === position[2][2]) {
+    if (position[2][0]) return position[2][0];
+  }
+
+  if (position[0][2] === position[1][1] && position[0][2] === position[2][0]) {
+    if (position[0][2]) return position[0][2];
+  }
+
+  if (position[0][1] === position[1][1] && position[0][1] === position[2][1]) {
+    if (position[0][1]) return position[0][1];
+  }
+
+  if (position[0][2] === position[1][2] && position[0][2] === position[2][2]) {
+    if (position[0][2]) return position[0][2];
+  }
+
+  if (position[0][0] === position[1][0] && position[0][0] === position[2][0]) {
+    if (position[0][0]) return position[0][0];
+  }
+  // for (let i = 0; i < position.length; i += 1) {
+  //   if (position[0][i] === position[1][i] === position[2][i]) {
+  //     if (position[0][i]) return position[0][i];
+  //   }
+  //   if (position[i][0] === position[i][1] === position[i][2]) {
+  //     if (position[i][0]) return position[i][0];
+  //   }
+  // }
+  // return undefined;
+
+
+  return undefined;
 }
 
 
